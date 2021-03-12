@@ -1,7 +1,7 @@
 const { create, getUserbyEmail, getAllUsers } = require("./user.services");
 const { genSaltSync, hashSync, compareSync } = require("bcrypt");
 const { sign } = require("jsonwebtoken");
-
+const { base64encode, base64decode } = require('nodejs-base64');
 
 module.exports = {
     createUser: (req, res) => {
@@ -9,6 +9,7 @@ module.exports = {
         const salt = genSaltSync(10);
         body.password =hashSync(body.password, salt);
         create(body, (err, results) => {
+
 
             if (err) {
                 console.log(err);
@@ -46,7 +47,8 @@ module.exports = {
                 return res.json({
                     success: 1,
                     message: "login successfully",
-                    token: jsontoken
+                    token: base64encode(jsontoken),
+                    
                 })
             } else {
                 return res.json({
