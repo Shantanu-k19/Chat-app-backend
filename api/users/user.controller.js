@@ -7,7 +7,7 @@ module.exports = {
     createUser: (req, res) => {
         const body = req.body;
         const salt = genSaltSync(10);
-        body.password = hashSync(body.password, salt);
+        body.password =hashSync(body.password, salt);
         create(body, (err, results) => {
 
             if (err) {
@@ -37,7 +37,7 @@ module.exports = {
                     data: "Invalid email or password"
                 });
             }
-            const result = compareSync(body.password, results.password)
+            const result =compareSync(body.password, results.password)
             if (result) {
                 results.password = undefined;
                 const jsontoken = sign({ result: results }, "qwe1234", {

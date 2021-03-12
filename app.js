@@ -6,6 +6,6 @@ const userRouter = require("./api/users/user.router");
 app.use(express.json());
 app.use("/api/users", userRouter);
 
-app.listen(process.env.APP_PORT, () => {
-    console.log("this server works ON PORT :", process.env.APP_PORT);
+app.listen(3000, () => {
+    console.log("this server works ON PORT :",3000);
 });
